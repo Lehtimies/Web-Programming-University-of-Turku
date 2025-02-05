@@ -1,0 +1,26 @@
+:root {
+    --green-color: rgb(0, 255, 0);
+}
+
+body {
+    background-color: gray;
+}
+
+a {
+    color: var(--green-color);
+}
+
+a:hover {
+    color: orange;
+    text-decoration-style: double;
+}
+
+#container {
+    width: 60%;
+    display: flex;
+    justify-content: space-between;
+}
+
+#container > div {
+    background-color: var(--green-color);
+}
