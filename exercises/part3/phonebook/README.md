@@ -1,0 +1,2 @@
+# FOR 3.8 AND 3.10
+The frontend is included here for simlplicity in grading so that the changes that were made to the frontend (in persons.js) can be easily located. I implemented 3.10 in the solution as well, which is why I'm using the base_url of /api/persons here already instead of the entire backend address (localhost:3001/api/persons). Hopefully this is clear enough though. 

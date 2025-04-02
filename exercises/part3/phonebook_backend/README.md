@@ -1,0 +1,2 @@
+# Notes about moving db to mongodb
+For assignment 3.12 and forward I decided to create a new index file. The "index-3.1-3.11.js" file is the version that uses the "data.json" file for the initial saved information upon starting the server, and the file just named "index.js" is the later version that uses MongoDB as the database.
