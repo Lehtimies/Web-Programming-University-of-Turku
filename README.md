@@ -8,10 +8,10 @@ Returns all the cities saved in the database
 Status code 200:
 [
   {
-    "id": "city_id",
     "name": "city_name",
+    "lon": "longitude_coordinates",
     "lat": "latitude_coordinates",
-    "lon": "longitude_coordinates"
+    "id": "city_id"
   },
   {
     // Same info for all the other cities
@@ -24,10 +24,10 @@ Returns the information for a specific city based on the id used
 ```JSON
 Status code 200:
 {
-  "id": "city_id",
   "name": "city_name",
+  "lon": "longitude_coordinates",
   "lat": "latitude_coordinates",
-  "lon": "longitude_coordinates"
+  "id": "city_id"
 }
 
 Status code 404:
@@ -40,7 +40,11 @@ Deletes the entry for the city with the given id from the database
 ```JSON
 Status code 204:
 // Returns only status code, but means that the item was successfully deleted
-// NOTE!: Currently only status code, but will implement code 404 for id's not in db later when implementing MongoDB
+
+Status code 404:
+{
+  "error": "City not found"
+}
 ```
 
 ### POST /api/cities
@@ -57,12 +61,12 @@ This is what you have to send to the backend
 **Response:**  \
 This is what is returned to the client/frontend
 ```JSON
-Status code 200:
+Status code 201:
 {
-  "id": "city_id",
   "name": "city_name",
+  "lon": "longitude_coordinates",
   "lat": "latitude_coordinates",
-  "lon": "longitude_coordinates"
+  "id": "city_id"
 }
 
 Status code 400:
