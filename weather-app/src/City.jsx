@@ -1,15 +1,10 @@
-
-const City = ({singleCity}) => {
-    console.log(singleCity)
-    return (
-        <li>
-            <div>
-                <button onClick={() => openNewPage}>{singleCity.name}</button>
-            </div>
-            
-        </li>
-
-    )
-}
+const City = ({ city }) => {
+  console.log(city);
+  return (
+    <div>
+      <div>{city.name}</div>
+    </div>
+  );
+};
 
 export default City;
