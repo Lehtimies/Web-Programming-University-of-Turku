@@ -29,7 +29,7 @@ const App = () => {
     cityService.getAll().then((response) => {
       console.log("promise Fulfilled");
       setCities(response);
-    })
+    });
   }, []);
   console.log("cities:", cities);
   console.log("render", cities.length, "cities");
@@ -83,12 +83,20 @@ const App = () => {
     setNewName(event.target.value);
   }
 
+  // Example icon code, replace with actual logic to get the icon code
+  // Actually intended for weather page
+  const icon = "01d";
+
   return (
     <div className="text-center item bg-blue">
       <h1 className="text-8xl text-white">Amazing Weather App!</h1>
       <p className="text-2xl mt-10 text-red-500">Under Maintenance ;D</p>
       <div className="flex items-center justify-center my-10 mx-20">
         <div className="flex flex-col gap-10 md:w-2/3 w-full">
+        <div className="flex flex-col">
+          <p className="flex text-xl text-white">Test icon:</p>
+          <img className="flex w-1/10" src={`https://openweathermap.org/img/wn/${icon}.png`} alt="Weather_icon" />
+        </div>
           <CityForm addCity={addCity} newName={newName} handleNameChange={handleNameChange} />
           <CityList cities={cities} deleteCity={deleteCity} />
         </div>
