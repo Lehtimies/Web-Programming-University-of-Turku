@@ -45,6 +45,11 @@ Status code 404:
 {
   "error": "City not found"
 }
+
+Status code 500:
+{
+  "error": "Failed to delete city"
+}
 ```
 
 ### POST /api/cities

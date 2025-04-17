@@ -4,6 +4,7 @@
   "description": "backend ",
   "main": "index.js",
   "scripts": {
+    "build:ui": "rm -rf dist && cd ../weather-app-frontend/weather-app/ && npm run build && cp -r dist ../../weather-app-backend",
     "dev": "nodemon index.js",
     "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"

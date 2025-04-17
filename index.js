@@ -9,6 +9,7 @@ const City = require("./models/city");
 app.use(express.json());
 app.use(cors());
 app.use(morgan("dev"));
+app.use(express.static("dist"));
 
 // Test data
 // let cities = require("./test-data.json");
@@ -163,9 +164,14 @@ app.get("/", (request, response) => {
 
 // Endpoint to get all cities
 app.get("/api/cities", (request, response) => {
-  City.find({}).then((cities) => {
-    response.json(cities);
-  });
+  try {
+    City.find({}).then((cities) => {
+      response.status(200).json(cities);
+    });
+  } catch (error) {
+    console.error("Error fetching cities:", error.message);
+    response.status(500).json({ error: "Failed to fetch cities" });
+  }
 });
 
 // Endpoint to get a city by ID
@@ -192,7 +198,8 @@ app.delete("/api/cities/:id", (request, response) => {
       }
     })
     .catch((error) => {
-      next(error);
+      console.error("Error deleting city:", error.message);
+      response.status(500).json({ error: "Failed to delete city" });
     });
 
   /* Code for test data
