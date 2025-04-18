@@ -18,7 +18,7 @@ const getWeather = async () => {
 
 const getWeatherById = async (id) => {
   try {
-    const request = axios.get(`${baseUrl}/${id}`);
+    const request = await axios.get(`${baseUrl}/${id}`);
     console.log("Get weather by id response:", request.data);
     return request.data;
   } catch (error) {

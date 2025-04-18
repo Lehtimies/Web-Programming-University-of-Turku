@@ -6,7 +6,7 @@ const CityForm = ({ addCity, newName, handleNameChange }) => {
           <input type="text" className="bg-white px-4 py-2 rounded-md w-full focus:outline-none" value={newName} onChange={handleNameChange} placeholder="Add new city!" />
         </div>
         <div className="flex w-fit">
-          <button type="submit" className="bg-white w-fit px-4 py-2 rounded-md">Add</button>
+          <button type="submit" className="bg-white w-fit px-4 py-2 rounded-md cursor-pointer">Add</button>
         </div>
       </div>
     </form>
