@@ -1,15 +1,24 @@
-require("dotenv").config();
+const dotenv = require("dotenv");
 const express = require("express");
 const cors = require("cors");
 const axios = require("axios");
 const morgan = require("morgan");
+const path = require("path");
+
+dotenv.config();
+
 const app = express();
+
+// Import mongoose model
 const City = require("./models/city");
 
 app.use(express.json());
 app.use(cors());
 app.use(morgan("dev"));
-app.use(express.static("dist"));
+
+// Serve static frontend files
+app.use(express.static(path.join(__dirname, "dist")));
+//app.use(express.static("dist"));
 
 // Test data
 // let cities = require("./test-data.json");
@@ -89,7 +98,7 @@ const getWeatherById = async (id) => {
     // Fetch the weather data from the OpenWeatherMap API
     const response = await axios.get(
       // Exclude minutely, hourly, and daily data to get current weather only
-      `https://api.openweathermap.org/data/3.0/onecall?lat=${lat}&lon=${lon}&units=metric&exclude=minutely,hourly,daily&appid=${WEATHER_API_KEY}`
+      `https://api.openweathermap.org/data/3.0/onecall?lat=${lat}&lon=${lon}&units=metric&exclude=minutely&appid=${WEATHER_API_KEY}`
     );
     console.log("Weather data response:", response.data);
 
@@ -397,17 +406,25 @@ app.get("/api/overview/:id", async (request, response) => {
 const errorHandler = (error, request, response, next) => {
   console.error(error.message);
   console.log("Error name", error.name);
-
+  
   if (error.name === "CastError") {
     return response.status(400).send({ error: "malformatted id" });
   } else {
     console.log("YOU HAVE REACHED THE ELSE STATEMENT IN ERROR HANDLER");
   }
-
+  
   next(error);
 };
 
 app.use(errorHandler);
+
+// Fallback for client-side routes (React Router)
+const fallbackPath = path.join(__dirname, "dist", "index.html");
+console.log("Sending fallback file from:", fallbackPath);
+
+app.get("/{*any}", (req, res) => {
+  res.sendFile(fallbackPath);
+});
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
