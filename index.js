@@ -419,11 +419,8 @@ const errorHandler = (error, request, response, next) => {
 app.use(errorHandler);
 
 // Fallback for client-side routes (React Router)
-const fallbackPath = path.join(__dirname, "dist", "index.html");
-console.log("Sending fallback file from:", fallbackPath);
-
 app.get("/{*any}", (req, res) => {
-  res.sendFile(fallbackPath);
+  res.sendFile(path.join(__dirname, "dist", "index.html"));
 });
 
 const PORT = process.env.PORT || 3000;
