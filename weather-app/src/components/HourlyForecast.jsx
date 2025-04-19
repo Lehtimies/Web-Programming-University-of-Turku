@@ -15,7 +15,7 @@ const HourlyForecast = ({ weather }) => {
         <hr className="h-0.5 my-1 w-full border-0 bg-amber-600 rounded-md" />
       </div>
       <div className="grid md:grid-cols-5 grid-cols-2 gap-5 w-full items-center px-4">
-        {hourly.slice(0, 5).map((hour, index) => (
+        {hourly.slice(1, 6).map((hour, index) => (
           <div key={index} className="flex flex-col items-center justify-center">
             <p>{formatUnixTime(hour.dt, weather.timezone)}</p>
             <img
