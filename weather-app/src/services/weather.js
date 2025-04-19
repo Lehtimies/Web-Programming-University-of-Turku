@@ -18,9 +18,9 @@ const getWeather = async () => {
 
 const getWeatherById = async (id) => {
   try {
-    const request = await axios.get(`${baseUrl}/${id}`);
-    console.log("Get weather by id response:", request.data);
-    return request.data;
+    const response = await axios.get(`${baseUrl}/${id}`);
+    console.log("Get weather by id response:", response.data);
+    return response.data;
   } catch (error) {
     console.error(
       "Error fetching weather by ID:",

@@ -111,7 +111,7 @@ const LandingPage = () => {
 
   return (
     <div className="text-center flex w-full item bg-blue">
-      <div className="flex flex-col items-center w-full justify-center my-5 mx-15">
+      <div className="flex flex-col items-center w-full justify-center my-5 mx-10">
         <div className="flex flex-col gap-5 md:w-3/4 w-full">
           <h1 className="text-3xl text-left text-white">Saved Cities:</h1>
           <hr className="h-1 w-full border-0 bg-gray-500" />

@@ -1,6 +1,6 @@
 const DailyForecast = ({ weather }) => {
   const daily  = weather.daily;
-  const formatUnixTime = (timestamp, timezone) => {
+  const formatUnixDate = (timestamp, timezone) => {
     return new Date((timestamp) * 1000).toLocaleDateString("en-US", {
       timeZone: timezone,
       month: "2-digit",
@@ -17,7 +17,7 @@ const DailyForecast = ({ weather }) => {
       <div className="grid md:grid-cols-5 grid-cols-2 gap-5 w-full items-center px-4">
         {daily.slice(0, 5).map((day, index) => (
           <div key={index} className="flex flex-col items-center justify-center">
-            <p>{formatUnixTime(day.dt, weather.timezone)}</p>
+            <p>{formatUnixDate(day.dt, weather.timezone)}</p>
             <img
               className="flex w-10 h-10"
               src={`https://openweathermap.org/img/wn/${day.weather[0].icon}.png`}

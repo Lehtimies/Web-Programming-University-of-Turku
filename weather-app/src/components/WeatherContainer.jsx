@@ -5,7 +5,7 @@ const WeatherContainer = ({ weather }) => {
         <p className="flex items-center justify-start w-full">🌡️ Weather:</p>
         <hr className="h-0.5 my-1 w-full border-0 bg-amber-600 rounded-md" />
       </div>
-      <div className="grid grid-rows-3 gap-3 w-full items-center px-4">
+      <div className="grid gap-3 w-full items-center px-4">
         <div className="text-left">
           <p>Temperature: {weather.current.temp} °C</p>
         </div>
