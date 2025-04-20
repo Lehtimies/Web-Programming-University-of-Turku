@@ -36,18 +36,19 @@ const WeatherPage = () => {
         // If the city data is found, then update the city variable
         setCity(cityData);
 
-        // Fetch the weather data for the city and check if the response is an error
-        const weatherData = await weatherService.getWeatherById(cityData.id);
-        if (weatherData.error) throw new Error("Failed to fetch weather data");
+        // Fetch the weather and overview data for the city simultaneously
+        const [weatherData, overviewData] = await Promise.all([
+          weatherService.getWeatherById(cityData.id),
+          overviewService.getOverviewById(cityData.id),
+        ]);
 
-        // If the weather data is found, then update the weather variable
+        // Check if the response is an error
+        if (weatherData.error || overviewData.error) {
+          throw new Error("Failed to fetch weather or overview data");
+        }
+
+        // If the weather and overview data are found, then update the variables and set status to success
         setWeather(weatherData);
-
-        // Fetch the overview data for the city and check if the response is an error
-        const overviewData = await overviewService.getOverviewById(cityData.id);
-        if (overviewData.error) throw new Error("Failed to fetch overview data");
-
-        // Uf the overview data is found, then update the overview variable and set the status to success
         setOverview(overviewData);
         setStatus("success");
       } catch (error) {
