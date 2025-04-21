@@ -1,3 +1,78 @@
+# weather-app-backend
+
+Backend for the Weather App project, built with Node.js, Express, and MongoDB.
+
+## Stack
+
+- Node.js + Express
+- MongoDB + Mongoose
+- Axios (for external and internal HTTP requests)
+- CORS middleware
+- Morgan (logging)
+- dotenv (environment variable management)
+
+## Weather Data
+
+This backend fetches live weather data using the [OpenWeatherMap API](https://openweathermap.org/api).  
+An API key is required and should be stored in your `.env` file.
+
+Example:
+```WEATHER_API_KEY=your_api_key_here```
+
+## Development
+
+To get started, create a `.env` file in the project root. A `.env.example` file is provided as a reference.
+
+You’ll need:
+
+- A MongoDB URI (create a project and cluster at [MongoDB](https://www.mongodb.com))
+- An API key from [OpenWeatherMap](https://openweathermap.org/api)
+
+Once your environment variables are set, install dependencies and start the development server:
+
+```bash
+npm install
+npm run dev
+```
+
+## Development Notes
+
+- Entry point: `index.js`
+- Uses `nodemon` for development
+- `.env` file required for API keys and DB connection
+- MongoDB is used for persistence
+- Frontend can be bundled into the backend via `build:ui`
+
+## Serving the Frontend from the Backend
+
+The frontend can be served from the root domain of the backend. To do this, run the `build:ui` script from the backend project:
+
+```bash
+npm run build:ui
+```
+
+This requires the frontend repository to be located in the same directory as the backend repository. if it is located elsewere then you can build and copy it manually.
+1. In the frontend directory run:
+```bash
+npm run build
+```
+2. Copy the generated `/dist` folder inte the backend directory.
+3. Start the backend server:
+```bash
+npm run dev
+```
+
+The frontend will be avalable on the root path of the backend server.
+
+## Scripts
+
+```bash
+npm run dev        # Start dev server with nodemon
+npm start          # Run server normally
+npm run build:ui   # Build frontend and move it into backend
+```
+<br>
+
 # Endpoints for backend
 Below are the REST API endpoints for the backend
 
@@ -164,7 +239,25 @@ Status code 200:
             "icon": "04d"
           }
         ]
-      }
+      },
+      "hourly": [
+        {
+          // Same format as current for the current hour
+        },
+        {
+          // Same format as current but for next hour
+        },
+        // ... Lists the weather for the next 48 hours like this
+      ],
+      "daily": [
+        {
+          // Lists weather for current day almost in the same format as in current  
+        },
+        {
+          // Lists weather for tomorrow in almost same format as in current
+        },
+        // ... Lists the weather for the next week like this
+      ]
     }
   }
 ] 
@@ -174,7 +267,7 @@ Status code 200:
 Returns the weather data for a specific city based on the id used.
 
 **Response structure:**  \
-The "current" key is what contains all the relevant information. If an error occurs then the appropriate status code and error message will be returned. 
+The "current" key is what contains all the relevant information for this hour, the "hourly" key contains the weather information for the next 48 hours, and the "daily" key contains the information for the next week. If an error occurs then the appropriate status code and error message will be returned. 
 ```JSON
 Status code 200:
 // New York example again
@@ -205,7 +298,25 @@ Status code 200:
         "icon": "04d"
       }
     ]
-  }
+  },
+  "hourly": [
+    {
+      // Same format as current for the current hour
+    },
+    {
+      // Same format as current but for next hour
+    },
+    // ... Lists the weather for the next 48 hours like this
+  ],
+  "daily": [
+    {
+      // Lists weather for current day almost in the same format as in current  
+    },
+    {
+      // Lists weather for tomorrow in almost same format as in current
+    },
+    // ... Lists the weather for the next week like this
+  ]
 }
 
 Status code 404:
@@ -220,8 +331,7 @@ Status code 500:
 ```
 
 ## Weather overview endpoints: /api/overview
-Returns an AI generated summary of the weather at the given city / location.  \
-**Not sure if we want to use it but could be nice for the front page**
+Returns an AI generated summary of the weather at the given city / location.
 
 ### GET /api/overview
 Returns the weather overview for all cities, **unsure if it is needed at all**
@@ -281,16 +391,12 @@ The "weather_overview" key is what contains all the relevant information. If an 
 Status code 200:
 // New York example again
 {
-  "id": "1a2b3c",
-  "name": "New York",
-  "data": {
-    "lat": 40.7128,
-    "lon": -74.006,
-    "tz": "-04:00",
-    "date": "2025-04-06",
-    "units": "metric",
-    "weather_overview": "The current weather in our area is mostly cloudy with a temperature of 13°C and a wind speed of 5 m/s coming from the northwest. The humidity stands at 66%, and the visibility is at 10,000 meters. The air pressure is at 1011 hPa, with a dew point of 6°C. The weather feels like 12°C due to the wind chill factor. The UV index is at 0, indicating low risk from the sun's UV rays. Overall, it's a cool and breezy day with broken clouds in the sky. Don't forget to grab a light jacket before heading out!"
-  }
+  "lat": 40.7128,
+  "lon": -74.006,
+  "tz": "-04:00",
+  "date": "2025-04-06",
+  "units": "metric",
+  "weather_overview": "The current weather in our area is mostly cloudy with a temperature of 13°C and a wind speed of 5 m/s coming from the northwest. The humidity stands at 66%, and the visibility is at 10,000 meters. The air pressure is at 1011 hPa, with a dew point of 6°C. The weather feels like 12°C due to the wind chill factor. The UV index is at 0, indicating low risk from the sun's UV rays. Overall, it's a cool and breezy day with broken clouds in the sky. Don't forget to grab a light jacket before heading out!"
 }
 
 Status code 404:
