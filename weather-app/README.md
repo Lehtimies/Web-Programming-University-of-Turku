@@ -1,12 +1,27 @@
-# React + Vite
+# weather-app
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This directory contains the frontend source code for the weather app, built with React and Vite.
 
-Currently, two official plugins are available:
+## Development
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+To start development on this project you need to run the following commands:
+```bash
+npm install       # To install all dependencies
+npm run dev       # To start the development server
+```
 
-## Expanding the ESLint configuration
+## Development Notes
 
-If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- Components, pages and services are under `src/`
+- Routing is handled using `react-router-dom` and defined in `app.jsx`
+- Tailwind (v4) is configured via modifying `tailwind.css` file
+- API calls are handled using Axios
+
+## Available Commands
+
+```bash
+npm run dev       # Start local development server
+npm run build     # Build for production
+npm run preview   # Preview built app
+npm run lint      # Run ESLint
+```
