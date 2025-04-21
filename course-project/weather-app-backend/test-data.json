@@ -1,0 +1,62 @@
+[
+  {
+    "id": "1a2b3c",
+    "name": "New York",
+    "lat": 40.7128,
+    "lon": -74.0060
+  },
+  { 
+    "id": "4d5e6f", 
+    "name": "Los Angeles",
+    "lat": 34.0522,
+    "lon": -118.2437
+  },
+  { 
+    "id": "7g8h9i", 
+    "name": "Chicago",
+    "lat": 41.8781,
+    "lon": -87.6298
+  },
+  { 
+    "id": "0j1k2l", 
+    "name": "Houston",
+    "lat": 29.7604,
+    "lon": -95.3698
+  },
+  { 
+    "id": "3m4n5o", 
+    "name": "Phoenix",
+    "lat": 33.4484,
+    "lon": -112.0740
+  },
+  { 
+    "id": "6p7q8r", 
+    "name": "Philadelphia",
+    "lat": 39.9526,
+    "lon": -75.1652
+  },
+  { 
+    "id": "9s0t1u", 
+    "name": "San Antonio",
+    "lat": 29.4241,
+    "lon": -98.4936
+  },
+  { 
+    "id": "2v3w4x", 
+    "name": "San Diego",
+    "lat": 32.7157,
+    "lon": -117.1611
+  },
+  { 
+    "id": "5y6z7a", 
+    "name": "Dallas",
+    "lat": 32.7767,
+    "lon": -96.7970
+  },
+  { 
+    "id": "8b9c0d", 
+    "name": "San Jose",
+    "lat": 37.3382,
+    "lon": -121.8863
+  }
+]
